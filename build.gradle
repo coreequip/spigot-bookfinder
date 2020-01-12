@@ -1,0 +1,41 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+plugins {
+    id 'java'
+}
+
+group 'dev.coreequip'
+version = currentVersion
+
+final def BUKKIT_VERSION = '1.14.3-SNAPSHOT'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+jar {
+    archiveVersion.set(currentVersion as String)
+
+    manifest {
+        attributes 'Implementation-Title': project.name,
+                'Implementation-Version': archiveVersion.get(),
+                'Version': archiveVersion.get(),
+                'Main-Class': 'dev.coreequip.bookfinder',
+                'Build-Timestamp': LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+    }
+}
+
+repositories {
+    jcenter()
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+    maven {
+        url 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compile "org.spigotmc:spigot-api:$BUKKIT_VERSION"
+}
