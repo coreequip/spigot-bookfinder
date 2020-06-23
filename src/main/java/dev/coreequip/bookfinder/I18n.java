@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 public class I18n {
     private static final String[] I18N_TEXTS = new String[]{
             "NOPLAYER| |You must be a player to use this command.",
-            "THREECHARS|Bitte mindestens 3 Zeichen im Suchsting angeben.|Please enter at least 3 chars.",
+            "THREECHARS|Bitte mindestens 3 Zeichen im Suchstring angeben.|Please enter at least 3 chars.",
             "DISTANCE|ist \u00A7n%.1fm entfernt\u00A7r|is \u00A7n%.1fm away\u00A7r",
             "POSITION|%s%s %s an Position Reihe %d Spalte %d|%s%s %s on position row %d column %d",
             "NOTHINGHERE|Leider nichts in diesem Chunk gefunden.|Sorry, nothing found in this chunk."

@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'dev.coreequip'
-version = currentVersion
+setVersion(currentVersion)
 
 final def BUKKIT_VERSION = '1.14.3-SNAPSHOT'
 
@@ -37,5 +37,5 @@ repositories {
 }
 
 dependencies {
-    compile "org.spigotmc:spigot-api:$BUKKIT_VERSION"
+    implementation "org.spigotmc:spigot-api:$BUKKIT_VERSION"
 }

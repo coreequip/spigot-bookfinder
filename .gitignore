@@ -1,4 +1,5 @@
 bin/
-/.idea/
+/.idea/**
+!/.idea/icon_dark.png
 /.gradle/
 /build/
