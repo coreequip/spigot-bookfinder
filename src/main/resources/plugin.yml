@@ -3,7 +3,7 @@ authors: [b4xter]
 description: Finds a enchanted book stored in current chunk's chests.
 
 main: dev.coreequip.bookfinder.Bookfinder
-version: 0.2
+version: 0.2.2
 api-version: 1.14
 
 commands:

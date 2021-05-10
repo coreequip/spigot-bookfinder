@@ -2,11 +2,10 @@ package dev.coreequip.bookfinder;
 
 
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -21,10 +20,9 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-import java.util.Base64;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.*;
 import java.util.logging.Level;
 
 import static dev.coreequip.bookfinder.I18n.$;
@@ -33,7 +31,6 @@ public class Bookfinder extends JavaPlugin {
 
     private static final String MSGPREFIX = ChatColor.AQUA + "[BF] " + ChatColor.RESET;
     private static final String COMMAND = "findbook";
-    private static final String LOOKPREFIX = "LOOK_";
 
     @Override
     public void onEnable() {
@@ -53,10 +50,14 @@ public class Bookfinder extends JavaPlugin {
         Player player = (Player) sender;
         Locale locale = I18n.getPlayerLocale(player);
 
-        if (args.length > 0 && args[0].startsWith(LOOKPREFIX)) {
+        final String UNIQUE_PREFIX = Base64.getUrlEncoder().withoutPadding().encodeToString(
+                ByteBuffer.allocate(Long.SIZE / Byte.SIZE).order(ByteOrder.LITTLE_ENDIAN)
+                        .putLong(player.getWorld().getSeed()).array()) + "_";
+
+        if (args.length > 0 && args[0].startsWith(UNIQUE_PREFIX)) {
             try {
                 String vectorStr = null;
-                vectorStr = new String(Base64.getUrlDecoder().decode(args[0].substring(LOOKPREFIX.length())));
+                vectorStr = new String(Base64.getUrlDecoder().decode(args[0].substring(UNIQUE_PREFIX.length())));
 
                 String[] coords = vectorStr.split(",");
                 if (3 != coords.length) return true;
@@ -153,8 +154,10 @@ public class Bookfinder extends JavaPlugin {
                         TextComponent message = new TextComponent(String.format(locale, $("POSITION", player),
                                 MSGPREFIX, ReadableEnchantment.getEnchantmentName(entry.getKey(), entry.getValue(), locale),
                                 verbalPos, row, col));
-                        message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                                "/" + COMMAND + " " + LOOKPREFIX + lookVector));
+                        String lookcommand = "/" + COMMAND + " " + UNIQUE_PREFIX + lookVector;
+                        message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, lookcommand));
+                        message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                new ComponentBuilder(lookcommand).create()));
                         player.spigot().sendMessage(message);
                     }
                 }
