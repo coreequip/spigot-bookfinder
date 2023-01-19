@@ -10,8 +10,8 @@ setVersion(currentVersion)
 
 final def BUKKIT_VERSION = '1.14.3-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 jar {
@@ -27,7 +27,7 @@ jar {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     maven {
         url 'https://hub.spigotmc.org/nexus/content/groups/public/'
     }
@@ -37,5 +37,10 @@ repositories {
 }
 
 dependencies {
-    implementation "org.spigotmc:spigot-api:$BUKKIT_VERSION"
+    compileOnly "org.spigotmc:spigot-api:$BUKKIT_VERSION"
+}
+
+wrapper {
+    distributionType = Wrapper.DistributionType.BIN
+    gradleVersion = '7.6'
 }

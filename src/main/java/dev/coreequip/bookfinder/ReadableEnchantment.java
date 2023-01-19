@@ -45,7 +45,9 @@ class ReadableEnchantment {
             "sharpness|Schärfe|Sharpness",
             "silk_touch|Behutsamkeit|Silk Touch",
             "smite|Bann|Smite",
+            "soul_speed|Seelenläufer|Soul Speed",
             "sweeping|Schwungkraft|Sweeping Edge",
+            "swift_sneak|Huschen|Swift Sneak",
             "thorns|Dornen|Thorns",
             "unbreaking|Haltbarkeit|Unbreaking",
             "vanishig_curse|Fluch des Verschwindens|Curse of Vanishing"
