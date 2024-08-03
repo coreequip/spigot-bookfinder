@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -8,10 +10,12 @@ plugins {
 group 'dev.coreequip'
 setVersion(currentVersion)
 
-final def BUKKIT_VERSION = '1.14.3-SNAPSHOT'
+final def BUKKIT_VERSION = '1.21-R0.1-SNAPSHOT'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 jar {
@@ -42,5 +46,51 @@ dependencies {
 
 wrapper {
     distributionType = Wrapper.DistributionType.BIN
-    gradleVersion = '7.6'
+    gradleVersion = '8.9'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation"
+}
+
+tasks.register('extractEnchantments') {
+    group = 'minecraft'
+    doLast {
+        def minecraftDir = new File(
+                System.getProperty("user.home"),
+                "Library/Application Support/minecraft" // macOS only, please change for your os
+        )
+        def indexFile = new File(minecraftDir, "assets/indexes").listFiles()
+                .findAll { it.name.endsWith('.json') }
+                .max { it.name.replace('.json', '') }
+
+        if (!indexFile) {
+            println "No index file found"
+            return
+        }
+
+        def loadLanguage = { lang ->
+            def indexContent = new JsonSlurper().parse(indexFile)
+            def objectsDir = new File(minecraftDir, "assets/objects")
+            def entry = indexContent.objects.find { it.key.startsWith("minecraft/lang/${lang}.json") }
+            def hash = entry.value.hash as String
+            new JsonSlurper().parse(new File(objectsDir, "${hash[0..1]}/${hash}"))
+        }
+
+        def deTranslations = loadLanguage('de_de')
+        def enTranslations = loadLanguage('en_gb')
+
+        def enchantments = deTranslations
+                .findAll { it.key.startsWith('enchantment.minecraft.') }
+                .collect { key, de ->
+                    def shortKey = key - 'enchantment.minecraft.'
+                    def en = enTranslations[key]
+                    en ? "${shortKey}|${de}|${en}" : null
+                }
+                .findAll { it != null }
+                .sort()
+
+        new File('src/main/resources/enchantments.txt').text = enchantments.join('\n')
+        println("Extracted ${enchantments.size()} enchantments")
+    }
 }

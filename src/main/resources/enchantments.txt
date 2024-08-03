@@ -1,0 +1,43 @@
+aqua_affinity|Wasseraffinität|Aqua Affinity
+bane_of_arthropods|Nemesis der Gliederfüßer|Bane of Arthropods
+binding_curse|Fluch der Bindung|Curse of Binding
+blast_protection|Explosionsschutz|Blast Protection
+breach|Durchbruch|Breach
+channeling|Entladung|Channelling
+density|Dichte|Density
+depth_strider|Wasserläufer|Depth Strider
+efficiency|Effizienz|Efficiency
+feather_falling|Federfall|Feather Falling
+fire_aspect|Verbrennung|Fire Aspect
+fire_protection|Feuerschutz|Fire Protection
+flame|Flamme|Flame
+fortune|Glück|Fortune
+frost_walker|Eisläufer|Frost Walker
+impaling|Harpune|Impaling
+infinity|Unendlichkeit|Infinity
+knockback|Rückstoß|Knockback
+looting|Plünderung|Looting
+loyalty|Treue|Loyalty
+luck_of_the_sea|Glück des Meeres|Luck of the Sea
+lure|Köder|Lure
+mending|Reparatur|Mending
+multishot|Mehrfachschuss|Multishot
+piercing|Durchschuss|Piercing
+power|Stärke|Power
+projectile_protection|Schusssicherheit|Projectile Protection
+protection|Schutz|Protection
+punch|Schlag|Punch
+quick_charge|Schnellladen|Quick Charge
+respiration|Atmung|Respiration
+riptide|Sog|Riptide
+sharpness|Schärfe|Sharpness
+silk_touch|Behutsamkeit|Silk Touch
+smite|Bann|Smite
+soul_speed|Seelenläufer|Soul Speed
+sweeping_edge|Schwungkraft|Sweeping Edge
+sweeping|Schwungkraft|Sweeping Edge
+swift_sneak|Huschen|Swift Sneak
+thorns|Dornen|Thorns
+unbreaking|Haltbarkeit|Unbreaking
+vanishing_curse|Fluch des Verschwindens|Curse of Vanishing
+wind_burst|Windstoß|Wind Burst
