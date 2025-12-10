@@ -19,12 +19,13 @@ knockback|Rückstoß|Knockback
 looting|Plünderung|Looting
 loyalty|Treue|Loyalty
 luck_of_the_sea|Glück des Meeres|Luck of the Sea
+lunge|Ausfallschritt|Lunge
 lure|Köder|Lure
 mending|Reparatur|Mending
 multishot|Mehrfachschuss|Multishot
 piercing|Durchschuss|Piercing
 power|Stärke|Power
-projectile_protection|Schusssicherheit|Projectile Protection
+projectile_protection|Schussschutz|Projectile Protection
 protection|Schutz|Protection
 punch|Schlag|Punch
 quick_charge|Schnellladen|Quick Charge

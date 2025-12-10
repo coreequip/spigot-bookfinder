@@ -7,7 +7,7 @@ plugins {
     id 'java'
 }
 
-group 'dev.coreequip'
+group = 'dev.coreequip'
 setVersion(currentVersion)
 
 final def BUKKIT_VERSION = '1.21-R0.1-SNAPSHOT'
@@ -33,10 +33,10 @@ jar {
 repositories {
     mavenCentral()
     maven {
-        url 'https://hub.spigotmc.org/nexus/content/groups/public/'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
     }
     maven {
-        url 'https://oss.sonatype.org/content/groups/public/'
+        url = 'https://oss.sonatype.org/content/groups/public/'
     }
 }
 
@@ -46,7 +46,7 @@ dependencies {
 
 wrapper {
     distributionType = Wrapper.DistributionType.BIN
-    gradleVersion = '8.9'
+    gradleVersion = '9.2.1'
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -58,7 +58,7 @@ tasks.register('extractEnchantments') {
     doLast {
         def minecraftDir = new File(
                 System.getProperty("user.home"),
-                "Library/Application Support/minecraft" // macOS only, please change for your os
+                "Library/Application Support/PrismLauncher" // macOS only, please change for your os
         )
         def indexFile = new File(minecraftDir, "assets/indexes").listFiles()
                 .findAll { it.name.endsWith('.json') }
